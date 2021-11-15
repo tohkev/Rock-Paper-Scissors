@@ -43,16 +43,28 @@ main h2 {
   filter: grayscale(1);
 }
 
+figure {
+  border: 2px solid black;
+  border-radius: 1rem;
+  background: #f2f1f6;
+}
+
+figure:hover {
+  transform: translate(-12px, -12px);
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 .choice img {
   width: 20rem;
   height: 20rem;
-  border: 2px solid black;
-  border-radius: 1rem;
+  border-bottom: 2px solid black;
+  border-radius: 1rem 1rem 0 0;
 }
 
 figcaption {
   text-align: center;
   font-size: 24px;
+  border-radius: 0rem 0rem 1rem 1rem;
 }
 
 /* ****************************Play Again Styles****************************** */
@@ -66,6 +78,10 @@ button.playAgain {
   font-size: 1.5rem;
   padding: 0.5rem 2rem;
   border-radius: 2rem;
+}
+
+button.playAgain:hover {
+  background-color: rgba(255, 255, 255, 0.589);
 }
 
 /* ****************************Scoreboard Styles****************************** */
