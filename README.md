@@ -1,13 +1,16 @@
-# Rock Paper Scissors Game
+# Rock, Paper, Scissors Monsters Game
 
-This displays a blank webpage where you can play rock-paper-scissors against a computer.
+This displays a webpage where you can choose monsters to play against a computer (it's rock paper scissors pretty much).
 
-## Instructions
+## Instructions/Features
 
-- Your input is case insensitive, and will be verified before you play the game.
-- In the pop up box type in 'rock', 'paper', or 'scissors' and your move will be compared to the bot
-- Results will be logged into the console.
+- Start the game by choosing a monster
+- If you lose all 5 of your lives, you lose
+- If you beat your opponent 5 times, you win!
+- Last round played are recorded in the log window (under Round)
 
 ## Tech used:
 
+- HTML
+- CSS
 - JavaScript
