@@ -1,0 +1,106 @@
+body {
+  background-color: rgb(160, 160, 160);
+}
+
+.container {
+  margin: 0 12rem;
+}
+
+.hide {
+  display: none;
+}
+
+/* ****************************Header Styles****************************** */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px solid black;
+}
+
+header h1 {
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+header p {
+  font-size: 24px;
+}
+
+/* ****************************Main Styles****************************** */
+
+main h2 {
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.disabled {
+  filter: grayscale(1);
+}
+
+.choice img {
+  width: 20rem;
+  height: 20rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 24px;
+}
+
+/* ****************************Play Again Styles****************************** */
+
+section.redo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+button.playAgain {
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+}
+
+/* ****************************Scoreboard Styles****************************** */
+
+section.scoreboard {
+  display: flex;
+  border: 3px solid #2f1403;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+
+.your-score,
+.cpu-score {
+  width: 35%;
+}
+
+.lives {
+  display: flex;
+  justify-content: center;
+}
+
+.lives img {
+  width: 3rem;
+}
+
+.middle {
+  text-align: center;
+  width: 30%;
+}
+
+p.log {
+  font-size: 24px;
+  background: white;
+  padding: 1rem 4rem;
+  border: 3px solid black;
+  border-radius: 0.5rem;
+}

@@ -4,9 +4,88 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock, Paper, Scissors!</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <title>Rock, Paper, Scissors Monsters!</title>
   </head>
-  <body>
+  <body class="container">
+    <header>
+      <h1>Welcome to the Arena, Champion!</h1>
+      <p>
+        Put your skills to the ultimate test! Choose a monster to fight for you
+        below and beat the computer!
+      </p>
+    </header>
+    <main>
+      <h2>Choose your monster by clicking on a button below!</h2>
+      <section class="main-container">
+        <div class="choice">
+          <figure>
+            <a href="#" class="choices"
+              ><img src="/images/rock-monster.jpg" alt="Rock Monster" id="rock"
+            /></a>
+            <figcaption>Rocky, the Mountain</figcaption>
+          </figure>
+        </div>
+        <div class="choices">
+          <figure>
+            <a href="#" class="choice"
+              ><img
+                src="/images/paper-monster.png"
+                alt="Paper Monster"
+                id="paper"
+            /></a>
+            <figcaption>Paper, the Lightweight</figcaption>
+          </figure>
+        </div>
+        <div class="choices">
+          <figure>
+            <a href="#" class="choice"
+              ><img
+                src="/images/scissor-monster.png"
+                alt="Scissors Monster"
+                id="scissors"
+            /></a>
+            <figcaption>Scissorman, he cuts things</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="redo hide">
+        <button class="playAgain">Play Again?</button>
+      </section>
+      <section class="scoreboard">
+        <div class="your-score">
+          <h2>Your Health:</h2>
+          <div class="lives your-health">
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+          </div>
+        </div>
+        <div class="middle">
+          <div class="round-block">
+            <h2>Round</h2>
+            <h3 id="round">1</h3>
+          </div>
+          <div class="log-block">
+            <p class="log">Actions are displayed here!</p>
+          </div>
+        </div>
+        <div class="cpu-score">
+          <h2>Computer Health:</h2>
+          <div class="lives cpu-health">
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+            <img src="/images/full-heart.png" alt="Full heart" />
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+
     <script src="/scripts/script.js"></script>
   </body>
 </html>

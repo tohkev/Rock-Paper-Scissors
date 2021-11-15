@@ -1,63 +1,140 @@
-// has computer randomly select rock, paper, or scissors
+let playerLives = 5;
+let cpuLives = 5;
+let playerChoice;
+let round = 1;
+let monsters = document.querySelectorAll(".choice");
+let playAgain = document.querySelector(".redo");
+let playAgainBtn = document.querySelector(".playAgain");
+let roundDisplay = document.querySelector("#round");
+let yourHealthDisplay = document.querySelector(".your-health");
+let cpuHealthDisplay = document.querySelector(".cpu-health");
+let logDisplay = document.querySelector(".log");
+
+// has the computer randomly select rock, paper, or scissors
 function computerPlay() {
-  let choices = ["Rock", "Paper", "Scissors"];
+  let choices = ["rock", "paper", "scissors"];
   let choice = Math.floor(Math.random() * 3);
   return choices[choice];
 }
 
-// creates a function which plays a round (choices being case insensitive, add logic to compare choices and choose winner)
+// this compares two choices and returns the results of 1 game [result, summary]
 function playRound(playerSelection, computerSelection) {
-  let playerChoice = playerSelection.toLowerCase();
-  let computerChoice = computerSelection.toLowerCase();
+  let playerChoice = playerSelection;
+  let computerChoice = computerSelection;
   if (playerChoice === computerChoice) {
-    return `It's a draw! You both chose ${playerChoice}!`;
+    return ["tie", `It's a draw! You both chose ${playerChoice}!`];
   } else if (playerChoice === "rock" && computerChoice === "paper") {
-    return `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      false,
+      `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else if (playerChoice === "rock" && computerChoice === "scissors") {
-    return `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      true,
+      `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else if (playerChoice === "paper" && computerChoice === "rock") {
-    return `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      true,
+      `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else if (playerChoice === "paper" && computerChoice === "scissors") {
-    return `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      false,
+      `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else if (playerChoice === "scissors" && computerChoice === "rock") {
-    return `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      false,
+      `You lose! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    return `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`;
+    return [
+      true,
+      `You win! You chose: ${playerChoice}, computer chose: ${computerChoice}.`,
+    ];
   } else {
     return "An error has occurred.";
   }
 }
 
-// creates a function that verifies a choice is rock, paper, or scissors
-function verifyChoice(choice) {
-  choice = choice.toLowerCase();
-  if (choice === "rock" || choice === "paper" || choice === "scissors") {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-// creates a function that asks get a player's choice
-function playerPlay() {
-  let playerSelection = prompt("Enter rock, paper, or scissors");
-  if (!verifyChoice(playerSelection)) {
-    while (!verifyChoice(playerSelection)) {
-      playerSelection = prompt("Error: Enter rock, paper, or scissors");
-    }
-  }
-  return playerSelection;
-}
-
-// creates a function which plays 5 games, and logs the games to the console
+//  this plays the game, keeps track of the internal score/log keeping and processes the results of the game
 function game() {
-  let numGames = 5;
+  let playerSelection = playerChoice;
+  let computerSelection = computerPlay();
+  let round = playRound(playerSelection, computerSelection);
+  if (round[0] === "tie") {
+  } else if (round[0]) {
+    cpuLives--;
+  } else if (!round[0]) {
+    playerLives--;
+  }
+  logDisplay.textContent = round[1];
+}
 
-  for (let i = 1; i <= numGames; i++) {
-    let playerSelection = playerPlay();
-    let computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
+//this keeps track of the current round and displays it under the round section
+function nextRound() {
+  round++;
+  roundDisplay.textContent = round;
+}
+
+// this updates the heart count to match the score count
+function updateHeart() {
+  yourHealthDisplay.textContent = "";
+  cpuHealthDisplay.textContent = "";
+  for (let i = 0; i < playerLives; i++) {
+    let fullHeart = document.createElement("img");
+    fullHeart.setAttribute("src", "/images/full-heart.png");
+    yourHealthDisplay.appendChild(fullHeart);
+  }
+  for (let j = 0; j < 5 - playerLives; j++) {
+    let emptyHeart = document.createElement("img");
+    emptyHeart.setAttribute("src", "/images/empty-heart.png");
+    yourHealthDisplay.appendChild(emptyHeart);
+  }
+  for (let k = 0; k < cpuLives; k++) {
+    let fullHeart = document.createElement("img");
+    fullHeart.setAttribute("src", "/images/full-heart.png");
+    cpuHealthDisplay.appendChild(fullHeart);
+  }
+  for (let l = 0; l < 5 - cpuLives; l++) {
+    let emptyHeart = document.createElement("img");
+    emptyHeart.setAttribute("src", "/images/empty-heart.png");
+    cpuHealthDisplay.appendChild(emptyHeart);
   }
 }
 
-game();
+// if either score hits 0, the game will end
+function endGame() {
+  if (playerLives === 0 || cpuLives === 0) {
+    if (playerLives > cpuLives) {
+      alert("You have won!");
+    } else {
+      alert("You have lost.");
+    }
+    monsters.forEach((monster) => {
+      monster.classList.add("disabled");
+    });
+    playAgain.classList.remove("hide");
+    playAgainBtn.addEventListener("click", () => {
+      window.location.reload();
+    });
+  } else {
+    nextRound();
+  }
+}
+
+//starts the game when the user clicks on a monster choice
+function playGame() {
+  monsters.forEach((monster) => {
+    monster.addEventListener("click", (e) => {
+      playerChoice = e.target.getAttribute("id");
+      game();
+      updateHeart();
+      endGame();
+      e.stopPropagation();
+    });
+  });
+}
+
+playGame();
